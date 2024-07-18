@@ -7,6 +7,7 @@ let prevVal = '0';
 let currVal = '';
 let operation = '';
 let result = '';
+let newInput = false;
 
 function updateDisplay(){
 
@@ -15,6 +16,11 @@ function updateDisplay(){
 }
 
 function handleNumberClick(number){
+
+    if(newInput){
+        currVal = '';
+        newInput = false;
+    }
 
     if (currVal === '0' && number === '0'){
         return;
@@ -36,6 +42,7 @@ function clearCalculator(){
     prevVal = '0';
     currVal = '';
     operation = '';
+    newInput = false;
     updateDisplay();
 }
 
@@ -49,6 +56,7 @@ function handleOperator(op){
     operation = op;
     prevVal = currVal;
     currVal = '';
+    newInput = false;
     updateDisplay();
 
 }
@@ -60,7 +68,8 @@ function handleEqual(){
 
     operate();
     operation = '';
-    prevVal = '';
+    prevVal = currVal;
+    newInput = true;
     updateDisplay();
 }
 
