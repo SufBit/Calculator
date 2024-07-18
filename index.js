@@ -11,13 +11,17 @@ let result = '';
 function updateDisplay(){
 
     prevValueDisplay.textContent = prevVal;
-    currValueDisplay.textContent = currVal;
+    currValueDisplay.textContent = currVal ;
 }
 
 function handleNumberClick(number){
 
-    if (currVal === '' && number === '0'){
+    if (currVal === '0' && number === '0'){
         return;
+    }
+
+    if (currVal === '0' && number !== '.') {
+        currVal = '';
     }
 
     if (number === '.' && currVal.includes('.')){
@@ -76,7 +80,10 @@ function operate(){
             break;
         case '/':
             if (curr === 0){
-                result = 'Error';
+                currVal = 'Error';
+                prevVal = '';
+                operation = '';
+                return;
             }
             else{
                 currVal = prev / curr;
